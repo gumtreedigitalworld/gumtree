@@ -1,0 +1,2423 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gumtree Digital 🌿 | Static Websites for Small Businesses</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome v7 -->
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.1.0/css/all.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#10B981',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Smooth transitions */
+        * {
+            transition-property: background-color, border-color, color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 200ms;
+        }
+        
+        /* Hero gradient background */
+        .hero-gradient {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+        }
+        
+        .dark .hero-gradient {
+            background: linear-gradient(135deg, #065f46 0%, #064e3b 100%);
+        }
+
+        /* Apple-like animations */
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        @keyframes slideInBottom {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-scale-in {
+            animation: scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .animate-slide-up {
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease-in forwards;
+        }
+
+        .heartbeat {
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+
+        /* Scroll progress bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(to right, #10B981, #059669);
+            transform-origin: left;
+            z-index: 9999;
+        }
+
+        /* Apple-like large text */
+        .hero-text-large {
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            line-height: 1.1;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        /* Glass morphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dark .glass {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Opacity on scroll */
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .scroll-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Infographic styles */
+        .infographic-circle {
+            position: relative;
+            display: inline-block;
+        }
+
+        .infographic-circle::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 120%;
+            height: 120%;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.1);
+            animation: pulse 2s infinite;
+        }
+
+        /* Newsletter input animation */
+        .newsletter-input:focus + .newsletter-label,
+        .newsletter-input:not(:placeholder-shown) + .newsletter-label {
+            transform: translateY(-140%) scale(0.85);
+            color: #10B981;
+        }
+
+        .newsletter-label {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Accordion animation */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .accordion-content.active {
+            max-height: 500px;
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 40;
+            animation: slideInBottom 0.5s ease-out;
+        }
+
+        @media (min-width: 768px) {
+            .fab {
+                bottom: 20px;
+            }
+        }
+
+        /* Mobile Bottom Navigation */
+        .mobile-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            animation: slideInBottom 0.5s ease-out;
+        }
+
+        @media (min-width: 768px) {
+            .mobile-nav {
+                display: none;
+            }
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 40;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Icon hover animations */
+        .icon-hover-bounce:hover i {
+            animation: bounce 0.6s ease;
+        }
+
+        .icon-hover-rotate:hover i {
+            transform: rotate(360deg);
+            transition: transform 0.6s ease;
+        }
+
+        .icon-hover-scale:hover i {
+            transform: scale(1.2);
+            transition: transform 0.3s ease;
+        }
+
+        /* Comic panel styles */
+        .comic-panel {
+            background: white;
+            border: 4px solid #000;
+            box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .dark .comic-panel {
+            background: #262626;
+            border-color: #10B981;
+            box-shadow: 8px 8px 0 rgba(16, 185, 129, 0.2);
+        }
+
+        /* Timeline styles */
+        .timeline-item {
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 50%;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #10B981;
+            border: 4px solid white;
+            transform: translateY(-50%);
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+        }
+
+        .dark .timeline-item::before {
+            border-color: #171717;
+        }
+
+        /* Loading spinner */
+        .spinner {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Success checkmark animation */
+        @keyframes checkmark {
+            0% { transform: scale(0) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(180deg); }
+            100% { transform: scale(1) rotate(360deg); }
+        }
+
+        .checkmark-animate {
+            animation: checkmark 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 9999;
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Stats counter */
+        .counter {
+            animation: countUp 1s ease-out;
+        }
+
+        /* Mobile menu overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 60;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-slide {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            bottom: 0;
+            width: 80%;
+            max-width: 400px;
+            background: white;
+            z-index: 70;
+            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+        }
+
+        .dark .mobile-menu-slide {
+            background: #171717;
+        }
+
+        .mobile-menu-slide.active {
+            right: 0;
+        }
+
+        /* Input with icon */
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+        }
+
+        .input-with-icon input {
+            padding-left: 48px;
+        }
+
+        /* Badge pulse */
+        .badge-pulse {
+            position: relative;
+        }
+
+        .badge-pulse::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 12px;
+            height: 12px;
+            background: #ef4444;
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+        }
+
+        /* Hover lift effect */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ============================================ */
+        /* MOBILE FULL-SCREEN STORY SECTIONS (APPLE STYLE) */
+        /* ============================================ */
+        
+        /* Hide desktop timeline on mobile, show on desktop */
+        .desktop-timeline {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .desktop-timeline {
+                display: block;
+            }
+        }
+
+        /* Show mobile full-screen sections only on mobile */
+        .mobile-story-container {
+            display: block;
+        }
+
+        @media (min-width: 768px) {
+            .mobile-story-container {
+                display: none;
+            }
+        }
+
+        /* Full-screen scroll sections for mobile */
+        .story-scroll-container {
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            height: 100vh;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .story-section {
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px 40px;
+            position: relative;
+        }
+
+        /* Animated year text */
+        .story-year {
+            font-size: clamp(3rem, 15vw, 8rem);
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            opacity: 0.1;
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        /* Icon container with animation */
+        .story-icon-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .story-icon-container i {
+            font-size: 3.5rem;
+        }
+
+        /* Scroll indicator for story sections */
+        .story-scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            opacity: 0.5;
+            z-index: 10;
+        }
+
+        /* Progress dots for story navigation */
+        .story-progress-dots {
+            position: fixed;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .story-progress-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .story-progress-dot.active {
+            background: #10B981;
+            transform: scale(1.5);
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+
+        /* Hide progress dots on desktop */
+        @media (min-width: 768px) {
+            .story-progress-dots {
+                display: none;
+            }
+        }
+
+        /* Story content animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .story-content {
+            animation: fadeInUp 0.8s ease-out forwards;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Background gradient transitions */
+        .story-section-1 {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+        }
+
+        .dark .story-section-1 {
+            background: linear-gradient(135deg, #064e3b 0%, #022c22 100%);
+        }
+
+        .story-section-2 {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        }
+
+        .dark .story-section-2 {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+        }
+
+        .story-section-3 {
+            background: linear-gradient(135deg, #fae8ff 0%, #e9d5ff 100%);
+        }
+
+        .dark .story-section-3 {
+            background: linear-gradient(135deg, #581c87 0%, #6b21a8 100%);
+        }
+
+        .story-section-4 {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+        }
+
+        .dark .story-section-4 {
+            background: linear-gradient(135deg, #047857 0%, #065f46 100%);
+        }
+
+        /* Large story title */
+        .story-title {
+            font-size: clamp(2rem, 8vw, 3rem);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        /* Story description */
+        .story-description {
+            font-size: clamp(1rem, 4vw, 1.25rem);
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+
+        /* Badge style for year label */
+        .story-year-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Interactive Timeline Styles */
+        .timeline-dot {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .timeline-dot:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-dot.active {
+            animation: timelinePulse 2s infinite;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+        }
+
+        .timeline-content {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Connecting lines for desktop */
+        .timeline-dot-container {
+            position: relative;
+        }
+
+        .timeline-dot-container:nth-child(1)::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: calc((100vw / 4) - 60px);
+            height: 4px;
+            background: linear-gradient(90deg, #10B981 0%, #3B82F6 100%);
+            transform: translate(0, -50%);
+            opacity: 0.8;
+            z-index: -1;
+            border-radius: 2px;
+        }
+
+        .timeline-dot-container:nth-child(2)::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: calc((100vw / 4) - 60px);
+            height: 4px;
+            background: linear-gradient(90deg, #3B82F6 0%, #8B5CF6 100%);
+            transform: translate(0, -50%);
+            opacity: 0.8;
+            z-index: -1;
+            border-radius: 2px;
+        }
+
+        .timeline-dot-container:nth-child(3)::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: calc((100vw / 4) - 60px);
+            height: 4px;
+            background: linear-gradient(90deg, #8B5CF6 0%, #F97316 100%);
+            transform: translate(0, -50%);
+            opacity: 0.8;
+            z-index: -1;
+            border-radius: 2px;
+        }
+
+        /* Mobile timeline styles */
+        .timeline-item-mobile {
+            position: relative;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .timeline-item-mobile.active {
+            opacity: 1;
+        }
+
+        .timeline-item-mobile::after {
+            content: '';
+            position: absolute;
+            left: 22px;
+            top: 60px;
+            bottom: -60px;
+            width: 2px;
+            background: linear-gradient(to bottom, currentColor 0%, transparent 100%);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .timeline-item-mobile:last-child::after {
+            display: none;
+        }
+
+        /* Pulse animation for timeline dots */
+        @keyframes timelinePulse {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-neutral-900 text-gray-900 dark:text-gray-100">
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- Header / Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border-b border-gray-200/50 dark:border-neutral-800/50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center icon-hover-bounce" aria-label="Gumtree Digital Home">
+                    <img src="https://raw.githubusercontent.com/gumtreedigitalworld/gumtree/refs/heads/main/light%20mode.png"
+                         class="h-[65px] w-auto dark:hidden absolute left-4 z-10"
+                         alt="Gumtree Digital">
+                    <img src="https://raw.githubusercontent.com/gumtreedigitalworld/gumtree/refs/heads/main/dark%20mode.png"
+                         class="h-[65px] w-auto hidden dark:block absolute left-4 z-10"
+                         alt="Gumtree Digital">
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#home" class="nav-link hover:text-emerald-600 dark:hover:text-emerald-400 font-medium text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-house text-xs"></i>
+                        Home
+                    </a>
+                    <a href="#story" class="nav-link hover:text-emerald-600 dark:hover:text-emerald-400 font-medium text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-book text-xs"></i>
+                        Our Story
+                    </a>
+                    <a href="#process" class="nav-link hover:text-emerald-600 dark:hover:text-emerald-400 font-medium text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-xs"></i>
+                        Process
+                    </a>
+                    <a href="#pricing" class="nav-link hover:text-emerald-600 dark:hover:text-emerald-400 font-medium text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-tag text-xs"></i>
+                        Pricing
+                    </a>
+                    <a href="#portfolio" class="nav-link hover:text-emerald-600 dark:hover:text-emerald-400 font-medium text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-briefcase text-xs"></i>
+                        Portfolio
+                    </a>
+                    <a href="#contact" class="nav-link hover:text-emerald-600 dark:hover:text-emerald-400 font-medium text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-envelope text-xs"></i>
+                        Contact
+                    </a>
+                    
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-800 icon-hover-rotate" aria-label="Toggle dark mode">
+                        <i id="theme-toggle-dark-icon" class="fa-solid fa-moon hidden text-lg"></i>
+                        <i id="theme-toggle-light-icon" class="fa-solid fa-sun hidden text-lg"></i>
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-800">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+    
+    <!-- Mobile Menu Slide -->
+    <div class="mobile-menu-slide dark:bg-neutral-900" id="mobile-menu">
+        <div class="p-6">
+            <!-- Close Button -->
+            <button id="mobile-menu-close" class="absolute top-4 right-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-800">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+
+            <!-- Logo -->
+            <div class="flex items-center justify-center mb-8 mt-2">
+                <img src="https://raw.githubusercontent.com/gumtreedigitalworld/gumtree/refs/heads/main/light%20mode.png"
+                     class="h-10 w-auto dark:hidden"
+                     alt="Gumtree Digital">
+                <img src="https://raw.githubusercontent.com/gumtreedigitalworld/gumtree/refs/heads/main/dark%20mode.png"
+                     class="h-10 w-auto hidden dark:block"
+                     alt="Gumtree Digital">
+            </div>
+
+            <!-- Menu Items -->
+            <nav class="space-y-1">
+                <a href="#home" class="mobile-menu-link flex items-center gap-4 p-4 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-800">
+                    <i class="fa-solid fa-house text-emerald-600 dark:text-emerald-400 w-6"></i>
+                    <span class="font-medium">Home</span>
+                </a>
+                <a href="#story" class="mobile-menu-link flex items-center gap-4 p-4 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-800">
+                    <i class="fa-solid fa-book text-emerald-600 dark:text-emerald-400 w-6"></i>
+                    <span class="font-medium">Our Story</span>
+                </a>
+                <a href="#process" class="mobile-menu-link flex items-center gap-4 p-4 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-800">
+                    <i class="fa-solid fa-list-check text-emerald-600 dark:text-emerald-400 w-6"></i>
+                    <span class="font-medium">Process</span>
+                </a>
+                <a href="#pricing" class="mobile-menu-link flex items-center gap-4 p-4 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-800">
+                    <i class="fa-solid fa-tag text-emerald-600 dark:text-emerald-400 w-6"></i>
+                    <span class="font-medium">Pricing</span>
+                </a>
+                <a href="#portfolio" class="mobile-menu-link flex items-center gap-4 p-4 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-800">
+                    <i class="fa-solid fa-briefcase text-emerald-600 dark:text-emerald-400 w-6"></i>
+                    <span class="font-medium">Portfolio</span>
+                </a>
+                <a href="#contact" class="mobile-menu-link flex items-center gap-4 p-4 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-800">
+                    <i class="fa-solid fa-envelope text-emerald-600 dark:text-emerald-400 w-6"></i>
+                    <span class="font-medium">Contact</span>
+                </a>
+            </nav>
+
+            <!-- Quick Actions -->
+            <div class="mt-8 space-y-3">
+                <button id="theme-toggle-mobile" class="w-full flex items-center gap-3 p-4 bg-gray-100 dark:bg-neutral-800 rounded-lg hover:bg-gray-200 dark:hover:bg-neutral-700">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                    <span class="font-semibold">Toggle Theme</span>
+                </button>
+            </div>
+
+            <!-- Social Links -->
+            <div class="mt-8 pt-8 border-t border-gray-200 dark:border-neutral-800">
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Follow Us</p>
+                <div class="flex gap-3">
+                    <a href="#" class="w-10 h-10 bg-gray-100 dark:bg-neutral-800 rounded-lg flex items-center justify-center hover:bg-emerald-600 hover:text-white">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gray-100 dark:bg-neutral-800 rounded-lg flex items-center justify-center hover:bg-emerald-600 hover:text-white">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gray-100 dark:bg-neutral-800 rounded-lg flex items-center justify-center hover:bg-emerald-600 hover:text-white">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gray-100 dark:bg-neutral-800 rounded-lg flex items-center justify-center hover:bg-emerald-600 hover:text-white">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section - Apple Style -->
+    <section id="home" class="min-h-screen flex items-center justify-center bg-white dark:bg-black pt-20">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-5xl mx-auto">
+                <!-- Trust Badge -->
+                <div class="inline-flex items-center gap-2 bg-emerald-50 dark:bg-emerald-900/20 px-4 py-2 rounded-full mb-8 mt-5 scroll-fade">
+                    <i class="fa-solid fa-badge-check text-emerald-600 dark:text-emerald-400"></i>
+                    <span class="text-sm font-semibold text-emerald-700 dark:text-emerald-300">Trusted by 500+ Businesses</span>
+                </div>
+
+                <h1 class="hero-text-large mb-6 text-gray-900 dark:text-white scroll-fade">
+                    Grow Your Business.<br>
+                    <span class="text-emerald-600 dark:text-emerald-400">One Page at a Time.</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-12 scroll-fade" style="animation-delay: 0.2s;">
+                    Beautiful static websites that just work. Fast, secure, and affordable.
+                </p>
+
+                <!-- Quick Benefits -->
+                <div class="flex flex-wrap justify-center gap-6 mb-12 scroll-fade" style="animation-delay: 0.3s;">
+                    <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                        <i class="fa-solid fa-rocket text-emerald-600 dark:text-emerald-400"></i>
+                        <span>10x Faster</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                        <i class="fa-solid fa-shield-halved text-emerald-600 dark:text-emerald-400"></i>
+                        <span>100% Secure</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                        <i class="fa-solid fa-mobile-screen text-emerald-600 dark:text-emerald-400"></i>
+                        <span>Mobile First</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                        <i class="fa-solid fa-chart-line text-emerald-600 dark:text-emerald-400"></i>
+                        <span>SEO Optimized</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center scroll-fade" style="animation-delay: 0.4s;">
+                    <a href="#contact" class="px-8 py-4 bg-emerald-600 text-white rounded-full font-semibold hover:bg-emerald-700 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center gap-2">
+                        <span>Start Your Project</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#story" class="px-8 py-4 border-2 border-gray-300 dark:border-neutral-700 rounded-full font-semibold hover:border-emerald-600 dark:hover:border-emerald-400 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-play"></i>
+                        <span>Learn More</span>
+                    </a>
+                </div>
+                
+                <!-- Scroll Indicator -->
+                <div class="mt-20 scroll-indicator">
+                    <i class="fa-solid fa-chevron-down text-2xl text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 bg-gray-50 dark:bg-neutral-900">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+                <div class="text-center scroll-fade">
+                    <div class="infographic-circle mb-4 inline-block">
+                        <div class="w-20 h-20 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center text-white">
+                            <i class="fa-solid fa-users text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="text-3xl font-bold text-emerald-600 dark:text-emerald-400">110+</div>
+                    <p class="text-gray-600 dark:text-gray-400 mt-1">Happy Clients</p>
+                </div>
+
+                <div class="text-center scroll-fade" style="animation-delay: 0.1s;">
+                    <div class="infographic-circle mb-4 inline-block">
+                        <div class="w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white">
+                            <i class="fa-solid fa-globe text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="text-3xl font-bold text-blue-600 dark:text-blue-400">6+</div>
+                    <p class="text-gray-600 dark:text-gray-400 mt-1">Countries</p>
+                </div>
+
+                <div class="text-center scroll-fade" style="animation-delay: 0.2s;">
+                    <div class="infographic-circle mb-4 inline-block">
+                        <div class="w-20 h-20 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white">
+                            <i class="fa-solid fa-trophy text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="text-3xl font-bold text-purple-600 dark:text-purple-400">4.8★</div>
+                    <p class="text-gray-600 dark:text-gray-400 mt-1">Avg Rating</p>
+                </div>
+
+                <div class="text-center scroll-fade" style="animation-delay: 0.3s;">
+                    <div class="infographic-circle mb-4 inline-block">
+                        <div class="w-20 h-20 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center text-white">
+                            <i class="fa-solid fa-bolt text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="text-3xl font-bold text-orange-600 dark:text-orange-400">10x</div>
+                    <p class="text-gray-600 dark:text-gray-400 mt-1">Faster Sites</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section - RESPONSIVE VERSION -->
+    <section id="story" class="overflow-hidden">
+        
+        <!-- ============================================ -->
+        <!-- MOBILE VERSION: Full-Screen Scroll Sections -->
+        <!-- ============================================ -->
+        <div class="mobile-story-container">
+
+            <!-- Story Section 1: 2020 - The Seed -->
+            <div class="story-section story-section-1">
+                <div class="story-year text-emerald-600 dark:text-emerald-400">2020</div>
+                <div class="story-content text-center max-w-lg">
+                    <div class="story-year-badge bg-emerald-600 text-white">
+                        <i class="fa-solid fa-seedling"></i>
+                        <span>2020</span>
+                    </div>
+                    
+                    <div class="story-icon-container bg-gradient-to-br from-emerald-400 to-emerald-600 shadow-2xl">
+                        <i class="fa-solid fa-seedling text-white"></i>
+                    </div>
+                    
+                    <h3 class="story-title text-gray-900 dark:text-white">
+                        The Seed Was Planted
+                    </h3>
+                    
+                    <p class="story-description text-gray-700 dark:text-gray-300">
+                        Started with a simple mission: help small businesses get online without the complexity and cost of traditional web development.
+                    </p>
+                </div>
+                
+                <div class="story-scroll-indicator">
+                    <i class="fa-solid fa-chevron-down text-2xl text-gray-400"></i>
+                </div>
+            </div>
+
+            <!-- Story Section 2: 2022 - Growing Roots -->
+            <div class="story-section story-section-2">
+                <div class="story-year text-blue-600 dark:text-blue-400">2022</div>
+                <div class="story-content text-center max-w-lg">
+                    <div class="story-year-badge bg-blue-600 text-white">
+                        <i class="fa-solid fa-tree"></i>
+                        <span>2022</span>
+                    </div>
+                    
+                    <div class="story-icon-container bg-gradient-to-br from-blue-400 to-blue-600 shadow-2xl">
+                        <i class="fa-solid fa-tree text-white"></i>
+                    </div>
+                    
+                    <h3 class="story-title text-gray-900 dark:text-white">
+                        Growing Roots
+                    </h3>
+                    
+                    <p class="story-description text-gray-700 dark:text-gray-300">
+                        Launched our signature process, helping 50+ local businesses establish their digital presence with fast, SEO-friendly websites.
+                    </p>
+                </div>
+                
+                <div class="story-scroll-indicator">
+                    <i class="fa-solid fa-chevron-down text-2xl text-gray-400"></i>
+                </div>
+            </div>
+
+            <!-- Story Section 3: 2024 - Branching Out -->
+            <div class="story-section story-section-3">
+                <div class="story-year text-purple-600 dark:text-purple-400">2024</div>
+                <div class="story-content text-center max-w-lg">
+                    <div class="story-year-badge bg-purple-600 text-white">
+                        <i class="fa-solid fa-trees"></i>
+                        <span>2024</span>
+                    </div>
+                    
+                    <div class="story-icon-container bg-gradient-to-br from-purple-400 to-purple-600 shadow-2xl">
+                        <i class="fa-solid fa-trees text-white"></i>
+                    </div>
+                    
+                    <h3 class="story-title text-gray-900 dark:text-white">
+                        Branching Out
+                    </h3>
+                    
+                    <p class="story-description text-gray-700 dark:text-gray-300">
+                        Expanded our services with premium maintenance plans and custom integrations. Our clients now reach millions of customers online.
+                    </p>
+                </div>
+                
+                <div class="story-scroll-indicator">
+                    <i class="fa-solid fa-chevron-down text-2xl text-gray-400"></i>
+                </div>
+            </div>
+
+            <!-- Story Section 4: 2025 & Beyond - Your Story -->
+            <div class="story-section story-section-4">
+                <div class="story-year text-white opacity-20">2025</div>
+                <div class="story-content text-center max-w-lg">
+                    <div class="story-year-badge bg-white text-emerald-600">
+                        <i class="fa-solid fa-sparkles"></i>
+                        <span>2025 & Beyond</span>
+                    </div>
+                    
+                    <div class="story-icon-container bg-white shadow-2xl">
+                        <i class="fa-solid fa-sparkles text-emerald-600 animate-pulse"></i>
+                    </div>
+                    
+                    <h3 class="story-title text-white">
+                        Your Story Starts Here
+                    </h3>
+                    
+                    <p class="story-description text-emerald-50">
+                        Ready to join hundreds of successful businesses? Let's write your chapter together.
+                    </p>
+                    
+                    <a href="#contact" class="inline-flex items-center gap-2 mt-6 px-8 py-4 bg-white text-emerald-600 rounded-full font-semibold hover:bg-emerald-50 shadow-xl transform hover:scale-105 transition-all">
+                        <span>Start Your Journey</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- DESKTOP VERSION: Horizontal Timeline (Original) -->
+        <!-- ============================================ -->
+        <div class="desktop-timeline py-32 bg-white dark:bg-black">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-20">
+                    <h2 class="text-4xl md:text-6xl font-bold mb-6 scroll-fade">Our Story</h2>
+                    <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto scroll-fade">
+                        From a small idea to helping hundreds of businesses grow their online presence
+                    </p>
+                </div>
+
+                <!-- Timeline -->
+                <div class="max-w-4xl mx-auto relative">
+                    <div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-emerald-600 to-emerald-400 transform -translate-x-1/2"></div>
+                    
+                    <!-- Timeline Item 1 -->
+                    <div class="mb-20 scroll-fade">
+                        <div class="flex flex-col md:flex-row items-center gap-8">
+                            <div class="md:w-5/12 md:text-right">
+                                <div class="bg-white dark:bg-neutral-800 p-8 rounded-2xl shadow-lg hover-lift">
+                                    <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold text-lg mb-2 md:justify-end">
+                                        <i class="fa-solid fa-seedling"></i>
+                                        <span>2020</span>
+                                    </div>
+                                    <h3 class="text-2xl font-bold mb-3">The Seed Was Planted</h3>
+                                    <p class="text-gray-600 dark:text-gray-400">
+                                        Started with a simple mission: help small businesses get online without the complexity and cost of traditional web development.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="hidden md:flex w-2/12 justify-center">
+                                <div class="w-12 h-12 bg-emerald-600 rounded-full border-4 border-white dark:border-black shadow-lg flex items-center justify-center text-white">
+                                    <i class="fa-solid fa-seedling"></i>
+                                </div>
+                            </div>
+                            <div class="md:w-5/12"></div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 2 -->
+                    <div class="mb-20 scroll-fade">
+                        <div class="flex flex-col md:flex-row-reverse items-center gap-8">
+                            <div class="md:w-5/12">
+                                <div class="bg-white dark:bg-neutral-800 p-8 rounded-2xl shadow-lg hover-lift">
+                                    <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold text-lg mb-2">
+                                        <i class="fa-solid fa-tree"></i>
+                                        <span>2022</span>
+                                    </div>
+                                    <h3 class="text-2xl font-bold mb-3">Growing Roots</h3>
+                                    <p class="text-gray-600 dark:text-gray-400">
+                                        Launched our signature process, helping 50+ local businesses establish their digital presence with fast, SEO-friendly websites.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="hidden md:flex w-2/12 justify-center">
+                                <div class="w-12 h-12 bg-emerald-600 rounded-full border-4 border-white dark:border-black shadow-lg flex items-center justify-center text-white">
+                                    <i class="fa-solid fa-tree"></i>
+                                </div>
+                            </div>
+                            <div class="md:w-5/12"></div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 3 -->
+                    <div class="mb-20 scroll-fade">
+                        <div class="flex flex-col md:flex-row items-center gap-8">
+                            <div class="md:w-5/12 md:text-right">
+                                <div class="bg-white dark:bg-neutral-800 p-8 rounded-2xl shadow-lg hover-lift">
+                                    <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold text-lg mb-2 md:justify-end">
+                                        <i class="fa-solid fa-trees"></i>
+                                        <span>2024</span>
+                                    </div>
+                                    <h3 class="text-2xl font-bold mb-3">Branching Out</h3>
+                                    <p class="text-gray-600 dark:text-gray-400">
+                                        Expanded our services with premium maintenance plans and custom integrations. Our clients now reach millions of customers online.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="hidden md:flex w-2/12 justify-center">
+                                <div class="w-12 h-12 bg-emerald-600 rounded-full border-4 border-white dark:border-black shadow-lg flex items-center justify-center text-white">
+                                    <i class="fa-solid fa-trees"></i>
+                                </div>
+                            </div>
+                            <div class="md:w-5/12"></div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 4 - Future -->
+                    <div class="scroll-fade">
+                        <div class="flex flex-col md:flex-row-reverse items-center gap-8">
+                            <div class="md:w-5/12">
+                                <div class="bg-gradient-to-br from-emerald-500 to-emerald-600 p-8 rounded-2xl shadow-lg text-white hover-lift">
+                                    <div class="flex items-center gap-2 font-bold text-lg mb-2">
+                                        <i class="fa-solid fa-sparkles"></i>
+                                        <span>2025 & Beyond</span>
+                                    </div>
+                                    <h3 class="text-2xl font-bold mb-3">Your Story Starts Here</h3>
+                                    <p class="text-emerald-50">
+                                        Ready to join hundreds of successful businesses? Let's write your chapter together.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="hidden md:flex w-2/12 justify-center">
+                                <div class="w-12 h-12 bg-emerald-600 rounded-full border-4 border-white dark:border-black shadow-lg flex items-center justify-center text-white animate-pulse">
+                                    <i class="fa-solid fa-sparkles"></i>
+                                </div>
+                            </div>
+                            <div class="md:w-5/12"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Process Visualization - Step by Step Flow -->
+    <section id="process" class="py-32 bg-white dark:bg-black relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-20 scroll-fade">
+                <h2 class="text-4xl md:text-6xl font-bold mb-6">Our Simple Process</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    From concept to launch in just a few simple steps
+                </p>
+            </div>
+
+            <div class="max-w-5xl mx-auto relative">
+                <!-- Process Steps -->
+                <div class="space-y-24">
+                    <!-- Step 1 -->
+                    <div class="scroll-fade">
+                        <div class="flex flex-col md:flex-row items-center gap-12">
+                            <div class="md:w-1/2">
+                                <div class="bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-3xl p-12 flex items-center justify-center aspect-square hover-lift">
+                                    <i class="fa-solid fa-phone text-9xl text-white"></i>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2">
+                                <div class="inline-flex items-center gap-2 bg-emerald-600 text-white text-sm font-bold px-4 py-2 rounded-full mb-4">
+                                    <i class="fa-solid fa-1"></i>
+                                    <span>STEP 1</span>
+                                </div>
+                                <h3 class="text-4xl font-bold mb-4">Free Consultation</h3>
+                                <p class="text-xl text-gray-600 dark:text-gray-400 mb-6">
+                                    We start with a friendly chat about your business, goals, and vision. No commitment required.
+                                </p>
+                                <ul class="space-y-3">
+                                    <li class="flex items-center gap-3">
+                                        <i class="fa-solid fa-circle-check text-emerald-600 dark:text-emerald-400 text-xl"></i>
+                                        <span>30-minute video call</span>
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <i class="fa-solid fa-circle-check text-emerald-600 dark:text-emerald-400 text-xl"></i>
+                                        <span>Custom project proposal</span>
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <i class="fa-solid fa-circle-check text-emerald-600 dark:text-emerald-400 text-xl"></i>
+                                        <span>Timeline & pricing breakdown</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="scroll-fade">
+                        <div class="flex flex-col md:flex-row-reverse items-center gap-12">
+                            <div class="md:w-1/2">
+                                <div class="bg-gradient-to-br from-blue-400 to-blue-600 rounded-3xl p-12 flex items-center justify-center aspect-square hover-lift">
+                                    <i class="fa-solid fa-palette text-9xl text-white"></i>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2 md:text-right">
+                                <div class="inline-flex items-center gap-2 bg-blue-600 text-white text-sm font-bold px-4 py-2 rounded-full mb-4">
+                                    <i class="fa-solid fa-2"></i>
+                                    <span>STEP 2</span>
+                                </div>
+                                <h3 class="text-4xl font-bold mb-4">Design & Mockup</h3>
+                                <p class="text-xl text-gray-600 dark:text-gray-400 mb-6">
+                                    We create a beautiful design mockup tailored to your brand and get your feedback.
+                                </p>
+                                <ul class="space-y-3">
+                                    <li class="flex items-center gap-3 md:flex-row-reverse">
+                                        <i class="fa-solid fa-circle-check text-blue-600 dark:text-blue-400 text-xl"></i>
+                                        <span>Custom design concepts</span>
+                                    </li>
+                                    <li class="flex items-center gap-3 md:flex-row-reverse">
+                                        <i class="fa-solid fa-circle-check text-blue-600 dark:text-blue-400 text-xl"></i>
+                                        <span>2 rounds of revisions</span>
+                                    </li>
+                                    <li class="flex items-center gap-3 md:flex-row-reverse">
+                                        <i class="fa-solid fa-circle-check text-blue-600 dark:text-blue-400 text-xl"></i>
+                                        <span>Mobile & desktop previews</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="scroll-fade">
+                        <div class="flex flex-col md:flex-row items-center gap-12">
+                            <div class="md:w-1/2">
+                                <div class="bg-gradient-to-br from-purple-400 to-purple-600 rounded-3xl p-12 flex items-center justify-center aspect-square hover-lift">
+                                    <i class="fa-solid fa-code text-9xl text-white"></i>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2">
+                                <div class="inline-flex items-center gap-2 bg-purple-600 text-white text-sm font-bold px-4 py-2 rounded-full mb-4">
+                                    <i class="fa-solid fa-3"></i>
+                                    <span>STEP 3</span>
+                                </div>
+                                <h3 class="text-4xl font-bold mb-4">Development</h3>
+                                <p class="text-xl text-gray-600 dark:text-gray-400 mb-6">
+                                    We build your website with clean, fast code and keep you updated throughout.
+                                </p>
+                                <ul class="space-y-3">
+                                    <li class="flex items-center gap-3">
+                                        <i class="fa-solid fa-circle-check text-purple-600 dark:text-purple-400 text-xl"></i>
+                                        <span>Lightning-fast load times</span>
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <i class="fa-solid fa-circle-check text-purple-600 dark:text-purple-400 text-xl"></i>
+                                        <span>SEO optimization included</span>
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <i class="fa-solid fa-circle-check text-purple-600 dark:text-purple-400 text-xl"></i>
+                                        <span>Weekly progress updates</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="scroll-fade">
+                        <div class="flex flex-col md:flex-row-reverse items-center gap-12">
+                            <div class="md:w-1/2">
+                                <div class="bg-gradient-to-br from-orange-400 to-orange-600 rounded-3xl p-12 flex items-center justify-center aspect-square hover-lift">
+                                    <i class="fa-solid fa-rocket text-9xl text-white"></i>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2 md:text-right">
+                                <div class="inline-flex items-center gap-2 bg-orange-600 text-white text-sm font-bold px-4 py-2 rounded-full mb-4">
+                                    <i class="fa-solid fa-4"></i>
+                                    <span>STEP 4</span>
+                                </div>
+                                <h3 class="text-4xl font-bold mb-4">Launch & Support</h3>
+                                <p class="text-xl text-gray-600 dark:text-gray-400 mb-6">
+                                    Your website goes live! We handle everything and provide ongoing support.
+                                </p>
+                                <ul class="space-y-3">
+                                    <li class="flex items-center gap-3 md:flex-row-reverse">
+                                        <i class="fa-solid fa-circle-check text-orange-600 dark:text-orange-400 text-xl"></i>
+                                        <span>Domain & hosting setup</span>
+                                    </li>
+                                    <li class="flex items-center gap-3 md:flex-row-reverse">
+                                        <i class="fa-solid fa-circle-check text-orange-600 dark:text-orange-400 text-xl"></i>
+                                        <span>Training & documentation</span>
+                                    </li>
+                                    <li class="flex items-center gap-3 md:flex-row-reverse">
+                                        <i class="fa-solid fa-circle-check text-orange-600 dark:text-orange-400 text-xl"></i>
+                                        <span>30-day warranty period</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Static Websites - Infographic -->
+    <section class="py-32 bg-gray-50 dark:bg-neutral-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-20 scroll-fade">
+                <h2 class="text-4xl md:text-6xl font-bold mb-6">Why Static Websites?</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    The smart choice for modern businesses
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+                <!-- Stat 1 -->
+                <div class="text-center scroll-fade hover-lift">
+                    <div class="infographic-circle mb-6 inline-block">
+                        <div class="w-32 h-32 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center text-white shadow-2xl">
+                            <div class="text-center">
+                                <div class="text-4xl font-bold">10x</div>
+                                <i class="fa-solid fa-bolt text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-gauge-high text-emerald-600 dark:text-emerald-400"></i>
+                        Faster
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Static sites load 10x faster than traditional CMS websites, improving user experience and SEO rankings.
+                    </p>
+                </div>
+
+                <!-- Stat 2 -->
+                <div class="text-center scroll-fade hover-lift" style="animation-delay: 0.1s;">
+                    <div class="infographic-circle mb-6 inline-block">
+                        <div class="w-32 h-32 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white shadow-2xl">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold">99.9%</div>
+                                <i class="fa-solid fa-arrow-trend-up text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-server text-blue-600 dark:text-blue-400"></i>
+                        Uptime
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        No databases or servers to crash. Your site is always online, always fast, always reliable.
+                    </p>
+                </div>
+
+                <!-- Stat 3 -->
+                <div class="text-center scroll-fade hover-lift" style="animation-delay: 0.2s;">
+                    <div class="infographic-circle mb-6 inline-block">
+                        <div class="w-32 h-32 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white shadow-2xl">
+                            <div class="text-center">
+                                <div class="text-4xl font-bold">$0</div>
+                                <i class="fa-solid fa-shield-halved text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-lock text-purple-600 dark:text-purple-400"></i>
+                        Security Risks
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        No plugins, no databases, no vulnerabilities. Static sites are inherently secure from hackers.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Additional Benefits -->
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-20">
+                <div class="bg-white dark:bg-neutral-800 p-8 rounded-2xl scroll-fade hover-lift shadow-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fa-solid fa-wallet text-4xl text-emerald-600 dark:text-emerald-400"></i>
+                        <h3 class="text-xl font-bold">Lower Costs</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        No expensive hosting, no monthly software fees, no surprise costs. Just straightforward pricing.
+                    </p>
+                </div>
+                <div class="bg-white dark:bg-neutral-800 p-8 rounded-2xl scroll-fade hover-lift shadow-lg">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fa-solid fa-earth-americas text-4xl text-blue-600 dark:text-blue-400"></i>
+                        <h3 class="text-xl font-bold">Global CDN</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Your site loads instantly anywhere in the world thanks to modern content delivery networks.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-32 bg-white dark:bg-black">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 scroll-fade">
+                <h2 class="text-4xl md:text-6xl font-bold mb-4">Simple, Transparent Pricing</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400">Choose the plan that fits your business needs</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
+                <!-- Starter Plan -->
+                <div class="bg-white dark:bg-neutral-800 rounded-2xl shadow-lg p-8 border-2 border-gray-200 dark:border-neutral-700 hover:border-emerald-500 dark:hover:border-emerald-500 hover-lift scroll-fade">
+                    <div class="text-center mb-6">
+                        <i class="fa-solid fa-star text-5xl text-gray-400 mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2">Starter</h3>
+                    </div>
+                    <div class="text-center mb-6">
+                        <span class="text-4xl font-bold text-emerald-600 dark:text-emerald-400">$199</span>
+                        <span class="text-gray-600 dark:text-gray-400"> one-time</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-600 dark:text-emerald-400"></i>
+                            <span>Up to 3 pages</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-600 dark:text-emerald-400"></i>
+                            <span>Basic design</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-600 dark:text-emerald-400"></i>
+                            <span>Mobile responsive</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-600 dark:text-emerald-400"></i>
+                            <span>2 weeks delivery</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="block w-full text-center px-6 py-3 bg-gray-100 dark:bg-neutral-700 text-gray-900 dark:text-white rounded-full font-semibold hover:bg-gray-200 dark:hover:bg-neutral-600 flex items-center justify-center gap-2">
+                        <span>Get Started</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Pro Plan (Featured) -->
+                <div class="bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl shadow-2xl p-8 transform scale-105 hover-lift text-white scroll-fade relative" style="animation-delay: 0.1s;">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <div class="bg-orange-500 text-white text-sm font-bold px-4 py-1 rounded-full flex items-center gap-2 shadow-lg">
+                            <i class="fa-solid fa-fire"></i>
+                            <span>MOST POPULAR</span>
+                        </div>
+                    </div>
+                    <div class="text-center mb-6 mt-4">
+                        <i class="fa-solid fa-crown text-5xl text-yellow-300 mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2">Pro</h3>
+                    </div>
+                    <div class="text-center mb-6">
+                        <span class="text-4xl font-bold">$399</span>
+                        <span class="text-emerald-100"> one-time</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>Up to 5 pages</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>Custom design</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>Contact form integration</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>Smooth animations</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>10 days delivery</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="block w-full text-center px-6 py-3 bg-white text-emerald-600 rounded-full font-semibold hover:bg-emerald-50 flex items-center justify-center gap-2">
+                        <span>Get Started</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Premium Plan -->
+                <div class="bg-white dark:bg-neutral-800 rounded-2xl shadow-lg p-8 border-2 border-gray-200 dark:border-neutral-700 hover:border-emerald-500 dark:hover:border-emerald-500 hover-lift scroll-fade" style="animation-delay: 0.2s;">
+                    <div class="text-center mb-6">
+                        <i class="fa-solid fa-gem text-5xl text-purple-400 mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2">Premium</h3>
+                    </div>
+                    <div class="text-center mb-6">
+                        <span class="text-4xl font-bold text-emerald-600 dark:text-emerald-400">$599</span>
+                        <span class="text-gray-600 dark:text-gray-400"> one-time</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-600 dark:text-emerald-400"></i>
+                            <span>Unlimited pages</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-600 dark:text-emerald-400"></i>
+                            <span>Premium custom design</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-600 dark:text-emerald-400"></i>
+                            <span>Advanced SEO setup</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-600 dark:text-emerald-400"></i>
+                            <span>1 month free updates</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-600 dark:text-emerald-400"></i>
+                            <span>7 days delivery</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="block w-full text-center px-6 py-3 bg-gray-100 dark:bg-neutral-700 text-gray-900 dark:text-white rounded-full font-semibold hover:bg-gray-200 dark:hover:bg-neutral-600 flex items-center justify-center gap-2">
+                        <span>Get Started</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Maintenance Info -->
+            <div class="text-center max-w-2xl mx-auto bg-gradient-to-br from-emerald-50 to-blue-50 dark:from-emerald-900/20 dark:to-blue-900/20 rounded-2xl p-8 shadow-lg scroll-fade">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <i class="fa-solid fa-headset text-3xl text-emerald-600 dark:text-emerald-400"></i>
+                    <h3 class="text-2xl font-bold">Ongoing Maintenance</h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400 mb-4">
+                    Keep your website fresh and running smoothly with our maintenance plans starting at 
+                    <span class="font-bold text-emerald-600 dark:text-emerald-400 text-2xl">$49/month</span>
+                </p>
+                <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-check text-emerald-600 dark:text-emerald-400"></i>
+                        <span>Content updates</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-check text-emerald-600 dark:text-emerald-400"></i>
+                        <span>Hosting support</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-check text-emerald-600 dark:text-emerald-400"></i>
+                        <span>Security monitoring</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-check text-emerald-600 dark:text-emerald-400"></i>
+                        <span>Technical assistance</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-32 bg-gray-50 dark:bg-neutral-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 scroll-fade">
+                <h2 class="text-4xl md:text-6xl font-bold mb-4">Our Recent Work</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400">Static websites we've built for local businesses</p>
+            </div>
+
+            <!-- Category Filters -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12 scroll-fade">
+                <button class="px-6 py-2 bg-emerald-600 text-white rounded-full font-semibold flex items-center gap-2">
+                    <i class="fa-solid fa-grid"></i>
+                    <span>All</span>
+                </button>
+                <button class="px-6 py-2 bg-gray-200 dark:bg-neutral-800 rounded-full font-semibold hover:bg-gray-300 dark:hover:bg-neutral-700 flex items-center gap-2">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <span>Business</span>
+                </button>
+                <button class="px-6 py-2 bg-gray-200 dark:bg-neutral-800 rounded-full font-semibold hover:bg-gray-300 dark:hover:bg-neutral-700 flex items-center gap-2">
+                    <i class="fa-solid fa-utensils"></i>
+                    <span>Restaurant</span>
+                </button>
+                <button class="px-6 py-2 bg-gray-200 dark:bg-neutral-800 rounded-full font-semibold hover:bg-gray-300 dark:hover:bg-neutral-700 flex items-center gap-2">
+                    <i class="fa-solid fa-heartbeat"></i>
+                    <span>Healthcare</span>
+                </button>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Portfolio items with Font Awesome icons -->
+                <div class="group relative bg-white dark:bg-neutral-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover-lift scroll-fade">
+                    <div class="aspect-video bg-gradient-to-br from-emerald-200 to-emerald-400 dark:from-emerald-700 dark:to-emerald-900 flex items-center justify-center">
+                        <i class="fa-solid fa-mug-saucer text-8xl text-white opacity-50"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                        <div class="text-center text-white">
+                            <i class="fa-solid fa-arrow-up-right-from-square text-3xl mb-3"></i>
+                            <p class="text-xl font-bold mb-2">Local Coffee Shop</p>
+                            <button class="px-6 py-2 bg-emerald-500 rounded-full font-semibold hover:bg-emerald-600 flex items-center gap-2 mx-auto">
+                                <span>View Project</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-mug-saucer text-emerald-600 dark:text-emerald-400"></i>
+                            Green Bean Café
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Modern landing page with menu and location info</p>
+                    </div>
+                </div>
+
+                <div class="group relative bg-white dark:bg-neutral-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover-lift scroll-fade" style="animation-delay: 0.1s;">
+                    <div class="aspect-video bg-gradient-to-br from-blue-200 to-blue-400 dark:from-blue-700 dark:to-blue-900 flex items-center justify-center">
+                        <i class="fa-solid fa-scale-balanced text-8xl text-white opacity-50"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                        <div class="text-center text-white">
+                            <i class="fa-solid fa-arrow-up-right-from-square text-3xl mb-3"></i>
+                            <p class="text-xl font-bold mb-2">Law Firm</p>
+                            <button class="px-6 py-2 bg-emerald-500 rounded-full font-semibold hover:bg-emerald-600 flex items-center gap-2 mx-auto">
+                                <span>View Project</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-scale-balanced text-blue-600 dark:text-blue-400"></i>
+                            Smith & Associates
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Professional website with service listings</p>
+                    </div>
+                </div>
+
+                <div class="group relative bg-white dark:bg-neutral-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover-lift scroll-fade" style="animation-delay: 0.2s;">
+                    <div class="aspect-video bg-gradient-to-br from-purple-200 to-purple-400 dark:from-purple-700 dark:to-purple-900 flex items-center justify-center">
+                        <i class="fa-solid fa-spa text-8xl text-white opacity-50"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                        <div class="text-center text-white">
+                            <i class="fa-solid fa-arrow-up-right-from-square text-3xl mb-3"></i>
+                            <p class="text-xl font-bold mb-2">Wellness Center</p>
+                            <button class="px-6 py-2 bg-emerald-500 rounded-full font-semibold hover:bg-emerald-600 flex items-center gap-2 mx-auto">
+                                <span>View Project</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-spa text-purple-600 dark:text-purple-400"></i>
+                            Zen Wellness Studio
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Calming design with booking integration</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-32 bg-white dark:bg-black">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 scroll-fade">
+                <h2 class="text-4xl md:text-6xl font-bold mb-4">What Our Clients Say</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400">Don't just take our word for it</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-50 dark:bg-neutral-900 p-8 rounded-2xl scroll-fade hover-lift">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fa-solid fa-star text-yellow-400"></i>
+                        <i class="fa-solid fa-star text-yellow-400"></i>
+                        <i class="fa-solid fa-star text-yellow-400"></i>
+                        <i class="fa-solid fa-star text-yellow-400"></i>
+                        <i class="fa-solid fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">
+                        "Gumtree Digital transformed our online presence. The website is fast, beautiful, and our customers love it!"
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold">Sarah Johnson</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-500">Green Bean Café</p>
+                        </div>
+                        <i class="fa-solid fa-badge-check text-blue-500 ml-auto text-xl"></i>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-50 dark:bg-neutral-900 p-8 rounded-2xl scroll-fade hover-lift" style="animation-delay: 0.1s;">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fa-solid fa-star text-yellow-400"></i>
+                        <i class="fa-solid fa-star text-yellow-400"></i>
+                        <i class="fa-solid fa-star text-yellow-400"></i>
+                        <i class="fa-solid fa-star text-yellow-400"></i>
+                        <i class="fa-solid fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">
+                        "Professional, responsive, and delivered ahead of schedule. Couldn't ask for more!"
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold">Michael Chen</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-500">Smith & Associates</p>
+                        </div>
+                        <i class="fa-solid fa-badge-check text-blue-500 ml-auto text-xl"></i>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-50 dark:bg-neutral-900 p-8 rounded-2xl scroll-fade hover-lift" style="animation-delay: 0.2s;">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fa-solid fa-star text-yellow-400"></i>
+                        <i class="fa-solid fa-star text-yellow-400"></i>
+                        <i class="fa-solid fa-star text-yellow-400"></i>
+                        <i class="fa-solid fa-star text-yellow-400"></i>
+                        <i class="fa-solid fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">
+                        "Best investment we made for our business. The ROI has been incredible!"
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold">Emma Williams</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-500">Zen Wellness</p>
+                        </div>
+                        <i class="fa-solid fa-badge-check text-blue-500 ml-auto text-xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 bg-gray-50 dark:bg-neutral-900">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-12 scroll-fade">
+                    <h2 class="text-4xl md:text-6xl font-bold mb-4">Get Your Free Consultation</h2>
+                    <p class="text-xl text-gray-600 dark:text-gray-400">
+                        Ready to grow your business online? Let's discuss your project!
+                    </p>
+                </div>
+                
+                <form id="contact-form" class="bg-white dark:bg-neutral-800 rounded-2xl shadow-xl p-8 scroll-fade">
+                    <div class="mb-6">
+                        <label for="name" class="block text-sm font-semibold mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-user text-emerald-600 dark:text-emerald-400"></i>
+                            Your Name *
+                        </label>
+                        <div class="input-with-icon">
+                            <i class="fa-solid fa-user"></i>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name"
+                                required
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-700 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
+                                placeholder="John Smith"
+                            >
+                        </div>
+                        <span class="text-red-500 text-sm hidden" id="name-error">
+                            <i class="fa-solid fa-circle-exclamation"></i> Please enter your name
+                        </span>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="email" class="block text-sm font-semibold mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-envelope text-emerald-600 dark:text-emerald-400"></i>
+                            Email Address *
+                        </label>
+                        <div class="input-with-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                required
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-700 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
+                                placeholder="john@example.com"
+                            >
+                        </div>
+                        <span class="text-red-500 text-sm hidden" id="email-error">
+                            <i class="fa-solid fa-circle-exclamation"></i> Please enter a valid email address
+                        </span>
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="package" class="block text-sm font-semibold mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-tag text-emerald-600 dark:text-emerald-400"></i>
+                            Package Selection *
+                        </label>
+                        <div class="input-with-icon">
+                            <i class="fa-solid fa-tag"></i>
+                            <select
+                                id="package"
+                                name="package"
+                                required
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-700 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
+                                style="padding-left: 40px;"
+                            >
+                                <option value="">Select a package...</option>
+                                <option value="free-consultation">Free Consultation</option>
+                                <option value="starter">Starter Package ($199)</option>
+                                <option value="pro">Pro Package ($399)</option>
+                                <option value="premium">Premium Package ($599)</option>
+                                <option value="custom">Custom Package</option>
+                            </select>
+                        </div>
+                        <span class="text-red-500 text-sm hidden" id="package-error">
+                            <i class="fa-solid fa-circle-exclamation"></i> Please select a package
+                        </span>
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="message" class="block text-sm font-semibold mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-message text-emerald-600 dark:text-emerald-400"></i>
+                            Your Message *
+                        </label>
+                        <textarea 
+                            id="message" 
+                            name="message"
+                            required
+                            rows="5"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-700 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none resize-none"
+                            placeholder="Tell us about your project..."
+                        ></textarea>
+                        <span class="text-red-500 text-sm hidden" id="message-error">
+                            <i class="fa-solid fa-circle-exclamation"></i> Please enter a message
+                        </span>
+                    </div>
+                    
+                    <button 
+                        type="submit"
+                        class="w-full px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center gap-2"
+                    >
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Request Free Consultation</span>
+                    </button>
+                    
+                    <div id="form-success" class="hidden mt-4 p-4 bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200 rounded-lg text-center flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-circle-check text-2xl"></i>
+                        <span>Thanks for reaching out! We'll get back to you soon.</span>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Footer - Always Dark -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-4">
+
+            <!-- Main Footer Content -->
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <!-- Company Info -->
+                    <div>
+                        <div class="flex items-center justify-center mb-4">
+                            <img src="https://raw.githubusercontent.com/gumtreedigitalworld/gumtree/refs/heads/main/dark%20mode.png"
+                                 class="h-10 w-auto"
+                                 alt="Gumtree Digital">
+                        </div>
+                        <p class="text-gray-400 mb-4">
+                            Building beautiful static websites for small businesses since 2020.
+                        </p>
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span>SSL Secured</span>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Links -->
+                    <div>
+                        <h3 class="flex items-center gap-2 font-bold mb-4 text-white">
+                            <i class="fa-solid fa-link"></i>
+                            Navigation
+                        </h3>
+                        <ul class="grid grid-cols-2 gap-2">
+                            <li><a href="#home" class="text-gray-400 hover:text-emerald-400 transition-colors">Home</a></li>
+                            <li><a href="#story" class="text-gray-400 hover:text-emerald-400 transition-colors">Our Story</a></li>
+                            <li><a href="#process" class="text-gray-400 hover:text-emerald-400 transition-colors">Process</a></li>
+                            <li><a href="#pricing" class="text-gray-400 hover:text-emerald-400 transition-colors">Pricing</a></li>
+                            <li><a href="#portfolio" class="text-gray-400 hover:text-emerald-400 transition-colors">Portfolio</a></li>
+                            <li><a href="#contact" class="text-gray-400 hover:text-emerald-400 transition-colors">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Social Media - Minimal Icons -->
+                <div class="flex justify-center gap-4 mb-8">
+                    <a href="#" class="w-12 h-12 bg-gray-800 hover:bg-emerald-600 rounded-full flex items-center justify-center transform hover:scale-110 transition-all icon-hover-bounce" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook text-lg"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-gray-800 hover:bg-emerald-600 rounded-full flex items-center justify-center transform hover:scale-110 transition-all icon-hover-bounce" aria-label="Twitter">
+                        <i class="fa-brands fa-twitter text-lg"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-gray-800 hover:bg-emerald-600 rounded-full flex items-center justify-center transform hover:scale-110 transition-all icon-hover-bounce" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram text-lg"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-gray-800 hover:bg-emerald-600 rounded-full flex items-center justify-center transform hover:scale-110 transition-all icon-hover-bounce" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin text-lg"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-gray-800 hover:bg-emerald-600 rounded-full flex items-center justify-center transform hover:scale-110 transition-all icon-hover-bounce" aria-label="YouTube">
+                        <i class="fa-brands fa-youtube text-lg"></i>
+                    </a>
+                </div>
+
+                <!-- Made with Love Animation -->
+                <div class="text-center border-t border-gray-800 pt-8">
+                    <div class="text-gray-400 flex flex-col items-center justify-center gap-1">
+                        <div class="flex items-center gap-1">
+                            <i class="fa-regular fa-copyright"></i>
+                            <span>2025 Gumtree Digital.</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <span>Made with</span>
+                            <i class="fa-solid fa-heart text-red-500 heartbeat"></i>
+                            <span>by Gumtree</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top w-12 h-12 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform hidden md:flex" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up text-xl"></i>
+    </button>
+
+
+    <!-- JavaScript -->
+    <script>
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scroll-progress').style.width = scrolled + '%';
+        });
+
+        // Dark Mode Toggle
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleMobileBtn = document.getElementById('theme-toggle-mobile');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const html = document.documentElement;
+
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        if (currentTheme === 'dark') {
+            html.classList.add('dark');
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            html.classList.remove('dark');
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        function toggleTheme() {
+            html.classList.toggle('dark');
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+            
+            if (html.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        themeToggleBtn.addEventListener('click', toggleTheme);
+        themeToggleMobileBtn.addEventListener('click', toggleTheme);
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuButton.addEventListener('click', openMobileMenu);
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = document.querySelectorAll('.mobile-menu-link');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-fade').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter Animation
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                    const counter = entry.target;
+                    const target = parseInt(counter.getAttribute('data-count'));
+                    let count = 0;
+                    const increment = target / 50;
+                    
+                    const updateCounter = () => {
+                        count += increment;
+                        if (count < target) {
+                            counter.textContent = Math.ceil(count);
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = target;
+                        }
+                    };
+                    
+                    updateCounter();
+                    counter.classList.add('counted');
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.counter').forEach(counter => {
+            counterObserver.observe(counter);
+        });
+
+        // ============================================
+        // MOBILE STORY PROGRESS DOTS INTERACTION
+        // ============================================
+        
+        // Track which story section is in view
+        const storyProgressDots = document.querySelectorAll('.story-progress-dot');
+        const storySections = document.querySelectorAll('.story-section');
+        
+        const storyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const index = Array.from(storySections).indexOf(entry.target);
+                    
+                    // Update active dot
+                    storyProgressDots.forEach((dot, i) => {
+                        if (i === index) {
+                            dot.classList.add('active');
+                        } else {
+                            dot.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+        
+        storySections.forEach(section => {
+            storyObserver.observe(section);
+        });
+
+        // Form Validation
+        const contactForm = document.getElementById('contact-form');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const packageInput = document.getElementById('package');
+        const messageInput = document.getElementById('message');
+        const formSuccess = document.getElementById('form-success');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            let isValid = true;
+
+            // Hide all error messages
+            document.getElementById('name-error').classList.add('hidden');
+            document.getElementById('email-error').classList.add('hidden');
+            document.getElementById('package-error').classList.add('hidden');
+            document.getElementById('message-error').classList.add('hidden');
+
+            // Validate name
+            if (nameInput.value.trim() === '') {
+                document.getElementById('name-error').classList.remove('hidden');
+                isValid = false;
+            }
+
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailInput.value.trim())) {
+                document.getElementById('email-error').classList.remove('hidden');
+                isValid = false;
+            }
+
+            // Validate package selection
+            if (packageInput.value.trim() === '') {
+                document.getElementById('package-error').classList.remove('hidden');
+                isValid = false;
+            }
+
+            // Validate message
+            if (messageInput.value.trim() === '') {
+                document.getElementById('message-error').classList.remove('hidden');
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Get form data
+                const name = nameInput.value.trim();
+                const email = emailInput.value.trim();
+                const selectedPackage = packageInput.options[packageInput.selectedIndex].text;
+                const message = messageInput.value.trim();
+
+                // Create email content with package information
+                const subject = encodeURIComponent(`Website Consultation Request from ${name} - ${selectedPackage}`);
+                const body = encodeURIComponent(
+                    `Name: ${name}\n` +
+                    `Email: ${email}\n` +
+                    `Selected Package: ${selectedPackage}\n\n` +
+                    `Message:\n${message}\n\n` +
+                    `--\n` +
+                    `This message was sent from the Gumtree Digital website contact form.`
+                );
+
+                // Redirect to email client with pre-filled content
+                window.location.href = `mailto:gumtreedigitalworld@gmail.com?subject=${subject}&body=${body}`;
+
+                // Show success message
+                formSuccess.classList.remove('hidden');
+                contactForm.reset();
+
+                setTimeout(() => {
+                    formSuccess.classList.add('hidden');
+                }, 5000);
+            }
+        });
+
+        // Newsletter Form
+        const newsletterForm = document.getElementById('newsletter-form');
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Show success notification
+            const toast = document.createElement('div');
+            toast.className = 'toast bg-emerald-600 text-white px-6 py-4 rounded-lg shadow-2xl flex items-center gap-3';
+            toast.innerHTML = '<i class="fa-solid fa-circle-check text-2xl"></i><span>Successfully subscribed! 🎉</span>';
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+            
+            newsletterForm.reset();
+        });
+
+        // Footer Accordion (Mobile)
+        const accordionTriggers = document.querySelectorAll('.accordion-trigger');
+        
+        accordionTriggers.forEach(trigger => {
+            trigger.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('.fa-chevron-down');
+                
+                content.classList.toggle('active');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+
+        // Initialize accordion content state for mobile
+        function initAccordion() {
+            if (window.innerWidth >= 768) {
+                document.querySelectorAll('.accordion-content').forEach(content => {
+                    content.classList.add('active');
+                });
+            } else {
+                document.querySelectorAll('.accordion-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+            }
+        }
+
+        initAccordion();
+        window.addEventListener('resize', initAccordion);
+
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Initialize scroll-fade visibility on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const fadeElements = document.querySelectorAll('.scroll-fade');
+            fadeElements.forEach((el, index) => {
+                setTimeout(() => {
+                    if (el.getBoundingClientRect().top < window.innerHeight) {
+                        el.classList.add('visible');
+                    }
+                }, index * 50);
+            });
+        });
+
+        // Active section highlighting in mobile nav
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.mobile-nav a[href^="#"]');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-emerald-600', 'dark:text-emerald-400');
+                link.classList.add('text-gray-600', 'dark:text-gray-400');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('text-emerald-600', 'dark:text-emerald-400');
+                    link.classList.remove('text-gray-600', 'dark:text-gray-400');
+                }
+            });
+        });
+
+        // Interactive Timeline Functionality
+        const timelineDots = document.querySelectorAll('.timeline-dot');
+        const timelineItemsMobile = document.querySelectorAll('.timeline-item-mobile');
+
+        // Desktop timeline interaction
+        timelineDots.forEach((dot, index) => {
+            dot.addEventListener('click', function() {
+                // Remove active class from all dots
+                timelineDots.forEach(d => d.classList.remove('active'));
+
+                // Add active class to clicked dot
+                this.classList.add('active');
+
+                // Optional: Scroll to corresponding section
+                const targetSection = document.querySelector(`[data-step="${index + 1}"]`);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        });
+
+        // Mobile timeline auto-activation on scroll
+        const mobileTimelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const step = entry.target.getAttribute('data-step');
+                    // Remove active class from all mobile items
+                    timelineItemsMobile.forEach(item => item.classList.remove('active'));
+                    // Add active class to current item
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.5 });
+
+        timelineItemsMobile.forEach(item => {
+            mobileTimelineObserver.observe(item);
+        });
+    </script>
+</body>
+</html>
